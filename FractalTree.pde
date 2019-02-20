@@ -1,17 +1,17 @@
-private double fractionLength = .5; 
+private double fractionLength = .8; 
 private int smallestBranch = 10; 
-private double branchAngle = .2;  
+private double branchAngle = .4;  
 public void setup() 
 {   
-	size(640,480);    
+	size(1200, 480);    
 	noLoop(); 
 } 
 public void draw() 
 {   
 	background(0);   
 	stroke(0,255,0);   
-	line(320,480,320,380);   
-	drawBranches(320,380,100,3*Math.PI/2);  //will add later 
+	line(320,480,320,380);   //add more trees, change fractionlength for each, .6, .7, .75, .8 add color
+	drawBranches(320,380,100,Math.PI/2); 
 } 
 public void drawBranches(int x,int y, double branchLength, double angle) 
 {   
@@ -19,9 +19,9 @@ public void drawBranches(int x,int y, double branchLength, double angle)
   double angle2 = angle + branchAngle;
   branchLength *= fractionLength;
   int endX1 = (int)(branchLength*Math.cos(angle1) + x);
-  int endY1 = (int)(branchLength*Math.sin(angle1) + x);
+  int endY1 = (int)(y - branchLength*Math.sin(angle1));
   int endX2 = (int)(branchLength*Math.cos(angle2) + x);
-  int endY2 = (int)(branchLength*Math.sin(angle2) + x);
+  int endY2 = (int)(y - branchLength*Math.sin(angle2));
   if(branchLength <= smallestBranch) 
   {
     line(x, y, endX1, endY1);
